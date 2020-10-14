@@ -15,14 +15,14 @@ describe MoviesController, :type => :controller do
         it 'makes find similar movies available to template' do
             @movies = [double('Movie'), double('Movie')]
             @movie = double('Movie')
-            Movie.stub(:find_similar_movies).and_return([@movies, @movie, false])
+            Movie.stub(:find_similar_movies).and_return([@movies, false, @movie])
             get :director, {:id => '1'}
             assigns(:movie).should == @movie
             assigns(:movies).should == @movies
         end
         it 'makes find similar movies available to template sad path' do
             @movie = double('Movie', :title => 'MovieRandom')
-            Movie.stub(:find_similar_movies).and_return([Array([]), @movie, true])
+            Movie.stub(:find_similar_movies).and_return([Array([]), true, @movie])
             get :director, {:id => '1'}
             expect(response).to redirect_to movies_path
             flash[:notice].should eq("'#{@movie.title}' has no director info.")
