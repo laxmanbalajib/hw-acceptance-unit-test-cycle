@@ -1,0 +1,1 @@
+Coverage report generated for Cucumber Features, RSpec to /home/ec2-user/environment/hw-acceptance-unit-test-cycle/rottenpotatoes/coverage. 52 / 59 LOC (88.14%) covered.
